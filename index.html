@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vida Leve — O app onde a sua consistência reduz o preço da assinatura</title>
+<meta name="description" content="Assinatura de R$ 189/mês em que a taxa de conclusão do seu ciclo de treino de 28 dias vira desconto real na fatura seguinte. Treinos de calistenia de 15–20 minutos, sem equipamento. Mensalidade mínima: R$ 19.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1117;
+    --ink-2: #161c26;
+    --ink-3: #232b38;
+    --line: #2c3542;
+    --paper: #f2f4f6;
+    --muted: #97a1ae;
+    --green: #3ddc84;
+    --green-dark: #2bb968;
+    --amber: #ffc857;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .display {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero {
+    padding: 76px 0 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 6px 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(33px, 6.6vw, 54px);
+    line-height: 1.07;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .hero .sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 36px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--green);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 17px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .cta-btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .cta-btn:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
+
+  .cta-note {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* CYCLE CARD */
+  .card {
+    max-width: 520px;
+    margin: 48px auto 0;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 26px;
+    text-align: left;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 18px;
+  }
+
+  .card-top .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .card-top .value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--green);
+  }
+
+  .stamps {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+  }
+
+  .stamp {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    border: 1px dashed var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .stamp.done {
+    background: var(--green);
+    border: 1px solid var(--green);
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .card-bottom {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+  }
+
+  .card-bottom .k { color: var(--muted); }
+  .card-bottom .v { color: var(--green); font-weight: 600; }
+
+  /* SECTIONS */
+  section.block {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 5vw, 34px);
+    line-height: 1.15;
+    margin-bottom: 32px;
+    max-width: 540px;
+  }
+
+  .steps { display: flex; flex-direction: column; gap: 26px; }
+
+  .step { display: flex; gap: 20px; align-items: flex-start; }
+
+  .step .n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--paper);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .step p { color: var(--muted); font-size: 15px; }
+
+  /* PRICE TABLE */
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    max-width: 560px;
+  }
+
+  .price-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 500;
+  }
+
+  .price-table td {
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .price-table td:last-child, .price-table th:last-child { text-align: right; }
+
+  .price-table .pct {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .price-table .price {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+  }
+
+  .price-table tr.best td {
+    background: rgba(61, 220, 132, 0.07);
+  }
+
+  .split-note {
+    margin-top: 24px;
+    max-width: 560px;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 22px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .split-note strong { color: var(--paper); }
+
+  .split-note .mono-line {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--green);
+    margin-top: 10px;
+  }
+
+  /* MGM */
+  .mgm-highlight {
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--green);
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 560px;
+  }
+
+  .mgm-highlight p { font-size: 15px; color: var(--muted); }
+  .mgm-highlight p strong { color: var(--paper); }
+  .mgm-highlight .big {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+  .mgm-highlight .big em { font-style: normal; color: var(--green); }
+
+  /* RULES */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .rule-card {
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 20px;
+  }
+
+  .rule-card .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .rule-card p { font-size: 14px; color: var(--muted); }
+
+  /* WEEK */
+  .week {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 560px;
+  }
+
+  .day {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+
+  .day .when {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    width: 92px;
+  }
+
+  .day .what { font-size: 14px; color: var(--muted); }
+  .day .what strong { color: var(--paper); font-weight: 600; }
+
+  /* FAQ */
+  details {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--ink-2);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  summary {
+    cursor: pointer;
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 15px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: '+';
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--green);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  details[open] summary::after { content: '−'; }
+
+  details .answer {
+    padding: 0 20px 18px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* FINAL CTA */
+  .final {
+    padding: 68px 0 44px;
+    text-align: center;
+    border-bottom: none;
+  }
+
+  .final h2 { margin: 0 auto 12px; max-width: 580px; }
+  .final .sub { color: var(--muted); max-width: 460px; margin: 0 auto 32px; }
+
+  /* WAITLIST FORM */
+  .waitlist-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 380px;
+    margin: 0 auto 8px;
+  }
+
+  .waitlist-form input {
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    outline: none;
+  }
+
+  .waitlist-form input:focus { border-color: var(--green); }
+  .waitlist-form input::placeholder { color: var(--muted); }
+
+  .waitlist-form .cta-btn {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .waitlist-form .cta-btn:disabled { opacity: 0.6; cursor: wait; }
+
+  .wl-status {
+    min-height: 24px;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .wl-status.ok { color: var(--green); }
+  .wl-status.err { color: var(--amber); }
+
+  footer {
+    padding: 8px 0 64px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 12.5px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 10px;
+  }
+
+  @media (max-width: 560px) {
+    .rules-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 56px; }
+    .day { flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Vida Leve · Lista de espera aberta</span>
+      <h1 class="display">O app onde a sua consistência <em>derruba o preço</em> da assinatura.</h1>
+      <p class="sub">Treinos de calistenia de 15–20 minutos, sem equipamento, guiados por IA. A cada ciclo de 28 dias, a sua taxa de conclusão vira desconto real na fatura seguinte — a mensalidade de R$ 189 pode cair até R$ 19.</p>
+      <a href="#lista" class="cta-btn">Entrar na lista de espera</a>
+      <span class="cta-note">Lançamento em desenvolvimento — avisamos você primeiro</span>
+
+      <div class="card" role="img" aria-label="Cartão de ciclo com 28 caselas representando os 28 dias, 26 concluídas, mostrando taxa de conclusão de 92% e próxima fatura de R$ 53">
+        <div class="card-top">
+          <span class="label">Seu ciclo de 28 dias</span>
+          <span class="value">26 / 28 · 92%</span>
+        </div>
+        <div class="stamps" id="stamps"></div>
+        <div class="card-bottom">
+          <span class="k">Próxima fatura</span>
+          <span class="v">R$ 53,00 <s style="color:var(--muted); font-weight:400; margin-left:6px;">R$ 189,00</s></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="kicker">Como funciona</p>
+      <h2>Você treina. O app comprova. Sua fatura encolhe.</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="n">1</span>
+          <div>
+            <h3>Assine e receba seu plano de 28 dias</h3>
+            <p>Treinos de calistenia adaptados ao seu nível — só o peso do corpo, em qualquer lugar. A intensidade evolui semana a semana, respeitando seu histórico.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">2</span>
+          <div>
+            <h3>Comprove cada treino com uma foto</h3>
+            <p>Foto pós-treino tirada na hora, pela câmera do app. A comunidade valida de forma anônima — e você também valida 3 fotos de outros por dia. Jogo limpo para todo mundo.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">3</span>
+          <div>
+            <h3>No 28º dia, sua consistência vira desconto</h3>
+            <p>O app calcula sua taxa de conclusão do ciclo e aplica o desconto automaticamente na sua próxima fatura. Sem resgate, sem burocracia — o preço simplesmente cai.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="kicker">A tabela, sem pegadinha</p>
+      <h2>Quanto mais você conclui, menos você paga.</h2>
+      <table class="price-table">
+        <thead>
+          <tr><th>Conclusão do ciclo</th><th>Desconto</th><th>Próxima mensalidade</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Até 39%</td><td class="pct">0%</td><td class="price">R$ 189,00</td></tr>
+          <tr><td>40% a 59%</td><td class="pct">10%</td><td class="price">R$ 172,00</td></tr>
+          <tr><td>60% a 74%</td><td class="pct">30%</td><td class="price">R$ 138,00</td></tr>
+          <tr><td>75% a 89%</td><td class="pct">50%</td><td class="price">R$ 104,00</td></tr>
+          <tr class="best"><td>90% a 100%</td><td class="pct">80%</td><td class="price">R$ 53,00</td></tr>
+        </tbody>
+      </table>
+      <div class="split-note">
+        <p><strong>Transparência total:</strong> a mensalidade de R$ 189 é composta por R$ 170 de <strong>valor do desafio</strong> — a parte que os seus descontos reduzem, podendo chegar a zero — e R$ 19 de <strong>taxa de serviço fixa</strong>, que mantém o app funcionando.</p>
+        <span class="mono-line">R$ 189 = R$ 170 (descontável até 100%) + R$ 19 (fixa)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="kicker">Indique e pague ainda menos</p>
+      <h2>Amigos ativos empurram sua fatura para baixo.</h2>
+      <div class="mgm-highlight">
+        <p class="big">Cada amigo indicado que assina: <em>+10%</em> de desconto no primeiro mês e <em>+5%</em> recorrente enquanto ele continuar ativo.</p>
+        <p>Somando desempenho + indicações, o desconto pode chegar a <strong>100% do valor do desafio</strong> — e sua mensalidade cai para o mínimo de <strong>R$ 19</strong>. O desconto nunca vira dinheiro nem acumula para o mês seguinte: ele reduz a sua próxima fatura, simples assim.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="kicker">Sua semana no Vida Leve</p>
+      <h2>28 dias com ritmo de gente real.</h2>
+      <div class="week">
+        <div class="day">
+          <span class="when">Seg – Sex</span>
+          <span class="what"><strong>Calistenia express (15–20 min)</strong> — treino do dia adaptado por IA, com prova por foto.</span>
+        </div>
+        <div class="day">
+          <span class="when">Sábado</span>
+          <span class="what"><strong>Alongamento e mobilidade</strong> — sessão regenerativa leve, com prova por foto simples.</span>
+        </div>
+        <div class="day">
+          <span class="when">Domingo</span>
+          <span class="what"><strong>Ritual de mentalidade</strong> — afirmações guiadas, no sistema de honra: sem foto, só a sua palavra.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="kicker">Confiança em primeiro lugar</p>
+      <h2>As regras que mantêm o jogo limpo.</h2>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <p class="label">Foto na hora, sem galeria</p>
+          <p>A prova só pode ser capturada pela câmera do app, no momento do treino. Upload de foto antiga não existe aqui.</p>
+        </div>
+        <div class="rule-card">
+          <p class="label">Validação anônima da comunidade</p>
+          <p>Suas fotos são validadas por outros assinantes, sem identificação de nenhum dos lados. Validar 3 fotos por dia também faz parte do seu desafio.</p>
+        </div>
+        <div class="rule-card">
+          <p class="label">Desconto, nunca dinheiro</p>
+          <p>Não há saque, transferência nem prêmio em dinheiro — o que você conquista é a redução da sua própria fatura. Por isso não é aposta: só depende de você.</p>
+        </div>
+        <div class="rule-card">
+          <p class="label">Privacidade levada a sério</p>
+          <p>Suas fotos são usadas apenas para validação, com dados de localização removidos, e são apagadas ao fim de cada ciclo de 28 dias.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <p class="kicker">Perguntas frequentes</p>
+      <h2>Ainda na dúvida?</h2>
+      <details>
+        <summary>Preciso estar em forma ou já saber calistenia?</summary>
+        <p class="answer">Não. No cadastro, o app pergunta idade, peso e altura e monta uma progressão no seu nível, com travas de segurança — iniciantes começam de onde estão. O desconto premia consistência, não performance.</p>
+      </details>
+      <details>
+        <summary>Posso chegar a pagar zero?</summary>
+        <p class="answer">O valor do desafio (R$ 170) pode zerar com desempenho + indicações. A taxa de serviço de R$ 19 é sempre cobrada — é ela que mantém a operação do app. Ou seja: sua mensalidade mínima é R$ 19.</p>
+      </details>
+      <details>
+        <summary>E se eu tiver um mês ruim?</summary>
+        <p class="answer">O desconto reflete só o seu ciclo mais recente. Um mês ruim significa fatura cheia no mês seguinte — e um recomeço limpo: o ciclo novo não carrega nenhuma punição do anterior.</p>
+      </details>
+      <details>
+        <summary>Isso é aposta ou sorteio?</summary>
+        <p class="answer">Não. Não existe sorte, sorteio nem disputa contra outros participantes, e nenhum dinheiro é pago a ninguém — o benefício é um desconto de fidelidade sobre a sua própria assinatura, condicionado ao seu próprio desempenho verificável.</p>
+      </details>
+      <details>
+        <summary>Como vocês evitam trapaça?</summary>
+        <p class="answer">Câmera obrigatória na hora (sem galeria), validação cruzada e anônima pela comunidade, fotos de controle de qualidade e verificações de integridade do aparelho. Nenhum sistema é infalível — o nosso torna a trapaça cara e trabalhosa o suficiente para não valer a pena.</p>
+      </details>
+      <details>
+        <summary>Preciso de equipamento ou academia?</summary>
+        <p class="answer">Não. Calistenia usa o peso do próprio corpo — quarto, sala, parque, qualquer lugar serve. 15 a 20 minutos por dia.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="final" id="lista">
+    <div class="wrap">
+      <h2 class="display">Só existe um jeito de pagar R$ 19: sendo consistente.</h2>
+      <p class="sub">Entre na lista de espera e seja avisado em primeira mão quando as inscrições abrirem.</p>
+      <form id="waitlist-form" class="waitlist-form" novalidate>
+        <input type="text" id="wl-name" placeholder="Seu nome" autocomplete="name" required>
+        <input type="email" id="wl-email" placeholder="Seu melhor e-mail" autocomplete="email" required>
+        <input type="tel" id="wl-whatsapp" placeholder="WhatsApp com DDD (opcional)" autocomplete="tel">
+        <button type="submit" class="cta-btn" id="wl-btn">Entrar na lista de espera</button>
+      </form>
+      <p id="wl-status" class="wl-status" role="status"></p>
+      <span class="cta-note">Sem compromisso · Sem spam · Você só recebe o aviso de lançamento</span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p>O desconto progressivo é um programa promocional de fidelidade por desempenho, aplicado exclusivamente sobre a mensalidade do próprio assinante, conforme regras dos Termos de Uso. Não há pagamento, resgate ou transferência de valores em dinheiro.</p>
+      <p>Este aplicativo não substitui orientação profissional de educação física ou avaliação médica. Em caso de dor ou desconforto, interrompa o exercício e procure um profissional de saúde.</p>
+      <p>Valores e faixas de desconto sujeitos aos Termos de Uso vigentes na data de assinatura.</p>
+    </div>
+  </footer>
+
+<script>
+  const stampsEl = document.getElementById('stamps');
+  const missed = [9, 17]; // dias não concluídos no exemplo (26/28)
+  for (let i = 1; i <= 28; i++) {
+    const el = document.createElement('div');
+    const done = !missed.includes(i);
+    el.className = 'stamp' + (done ? ' done' : '');
+    el.textContent = done ? '✓' : i;
+    stampsEl.appendChild(el);
+  }
+
+  // Lista de espera — grava direto no Supabase (chave pública; RLS protege a leitura)
+  const WL_URL = 'https://tccrcxpvnjvcevyxwycu.supabase.co/rest/v1/waitlist';
+  const WL_KEY = 'sb_publishable_T_RGG0GHqRrLxFmxb8P-zg_fwrS2a6o';
+
+  document.getElementById('waitlist-form').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const name = document.getElementById('wl-name').value.trim();
+    const email = document.getElementById('wl-email').value.trim();
+    const whatsapp = document.getElementById('wl-whatsapp').value.trim();
+    const status = document.getElementById('wl-status');
+    const btn = document.getElementById('wl-btn');
+
+    status.className = 'wl-status';
+    if (!name || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      status.textContent = 'Preencha seu nome e um e-mail válido.';
+      status.classList.add('err');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    try {
+      const res = await fetch(WL_URL, {
+        method: 'POST',
+        headers: { apikey: WL_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify({ name, email, whatsapp: whatsapp || null })
+      });
+      if (res.status === 201) {
+        status.textContent = '✓ Você está na lista! Avisaremos em primeira mão.';
+        status.classList.add('ok');
+        ev.target.reset();
+      } else if (res.status === 409) {
+        status.textContent = 'Esse e-mail já está na lista — você será avisado!';
+        status.classList.add('ok');
+      } else {
+        status.textContent = 'Algo deu errado. Tente de novo em instantes.';
+        status.classList.add('err');
+      }
+    } catch {
+      status.textContent = 'Sem conexão. Verifique sua internet e tente de novo.';
+      status.classList.add('err');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Entrar na lista de espera';
+    }
+  });
+</script>
+
+</body>
+</html>
